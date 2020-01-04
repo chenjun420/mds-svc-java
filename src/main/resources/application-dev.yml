@@ -8,11 +8,11 @@ spring:
       # 连接数据库的url，不同数据库不一样。例如：
       #mysql : jdbc:mysql://10.20.153.104:3306/druid2
       #oracle : jdbc:oracle:thin:@10.20.149.85:1521:ocnauto
-      url: jdbc:mysql://127.0.0.1:3306/test1?characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+      url: jdbc:mysql://127.0.0.1:3306/test1
       # 连接数据库的用户名
       username: root
       # 连接数据库的密码，如果你不希望密码直接写在配置文件中，可以使用ConfigFilter。详细参见https://github.com/alibaba/druid/wiki/%E4%BD%BF%E7%94%A8ConfigFilter
-      password: chenjun
+      password: 123456
       # 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
       initial-size: 1
       # 最大连接池数量
@@ -59,45 +59,6 @@ spring:
       # 日志用的filter:slf4j
       # 防御sql注入的filter:wall
       filters: stat,wall,slf4j
-
-      # WebStatFilter配置，说明请参考Druid Wiki，配置_配置WebStatFilter
-      web-stat-filter:
-        # 是否启用StatFilter默认值false
-        enabled: true
-        # 添加过滤规则
-        url-pattern: "/*"
-        # 忽略过滤格式, 排除一些不必要的url
-        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
-        # 是否启用session统计
-        session-stat-enable: false
-        # 最大session统计个数，默认1000
-        # session-stat-max-count: 1000
-        # 根据需要，把其中的xxx.user修改为你user信息保存在session中的sessionName。
-        # 注意：如果你session中保存的是非string类型的对象，需要重载toString方法。
-        # principal-session-name: xxx.user
-        # 如果你的user信息保存在cookie中，你可以配置principalCookieName，使得druid知道当前的user是谁；根据需要，把其中的xxx.user修改为你user信息保存在cookie中的cookieName
-        # principal-cookie-name: xxx.user
-        # 监控单个url调用的sql列表
-        profile-enable: true
-
-      # StatViewServlet配置，说明请参考Druid Wiki，配置_StatViewServlet配置
-      stat-view-servlet:
-        #是否启用StatViewServlet（监控页面）默认值为false（考虑到安全问题默认并未启动，如需启用建议设置密码或白名单以保障安全）
-        enabled: true
-        # 访问内置监控页面，默认内置监控页面的首页是/druid/index.html
-        url-pattern: "/druid/*"
-        # 是否允许清空统计数据
-        reset-enable: false
-        # 用户名
-        login-username: ztemds
-        # 密码
-        login-password: ztemds@1203
-        # StatViewSerlvet展示出来的监控信息比较敏感，是系统运行的内部情况，如果你需要做访问控制，可以配置allow和deny这两个参数
-        # deny优先于allow，如果在deny列表中，就算在allow列表中，也会被拒绝。如果allow没有配置或者为空，则允许所有访问
-        # 配置的格式 -> <IP> 或者 <IP>/<SUB_NET_MASK_size>；例如 128.242.127.1/24 24表示，前面24位是子网掩码，比对的时候，前面24位相同就匹配
-        # 不支持IPv6
-        # allow:
-        # deny:
 
     secondary:
       # 数据源名称
@@ -107,11 +68,11 @@ spring:
       # 连接数据库的url，不同数据库不一样。例如：
       #mysql : jdbc:mysql://10.20.153.104:3306/druid2
       #oracle : jdbc:oracle:thin:@10.20.149.85:1521:ocnauto
-      url: jdbc:mysql://127.0.0.1:3306/test2?characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+      url: jdbc:mysql://127.0.0.1:3306/test2
       # 连接数据库的用户名
       username: root
       # 连接数据库的密码，如果你不希望密码直接写在配置文件中，可以使用ConfigFilter。详细参见https://github.com/alibaba/druid/wiki/%E4%BD%BF%E7%94%A8ConfigFilter
-      password: chenjun
+      password: 123456
       # 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
       initial-size: 1
       # 最大连接池数量
@@ -159,45 +120,6 @@ spring:
       # 防御sql注入的filter:wall
       filters: stat,wall,slf4j
 
-      # WebStatFilter配置，说明请参考Druid Wiki，配置_配置WebStatFilter
-      web-stat-filter:
-        # 是否启用StatFilter默认值false
-        enabled: true
-        # 添加过滤规则
-        url-pattern: "/*"
-        # 忽略过滤格式, 排除一些不必要的url
-        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*"
-        # 是否启用session统计
-        session-stat-enable: false
-        # 最大session统计个数，默认1000
-        # session-stat-max-count: 1000
-        # 根据需要，把其中的xxx.user修改为你user信息保存在session中的sessionName。
-        # 注意：如果你session中保存的是非string类型的对象，需要重载toString方法。
-        # principal-session-name: xxx.user
-        # 如果你的user信息保存在cookie中，你可以配置principalCookieName，使得druid知道当前的user是谁；根据需要，把其中的xxx.user修改为你user信息保存在cookie中的cookieName
-        # principal-cookie-name: xxx.user
-        # 监控单个url调用的sql列表
-        profile-enable: true
-
-      # StatViewServlet配置，说明请参考Druid Wiki，配置_StatViewServlet配置
-      stat-view-servlet:
-        #是否启用StatViewServlet（监控页面）默认值为false（考虑到安全问题默认并未启动，如需启用建议设置密码或白名单以保障安全）
-        enabled: true
-        # 访问内置监控页面，默认内置监控页面的首页是/druid/index.html
-        url-pattern: "/druid/*"
-        # 是否允许清空统计数据
-        reset-enable: false
-        # 用户名
-        login-username: ztemds
-        # 密码
-        login-password: ztemds@1203
-        # StatViewSerlvet展示出来的监控信息比较敏感，是系统运行的内部情况，如果你需要做访问控制，可以配置allow和deny这两个参数
-        # deny优先于allow，如果在deny列表中，就算在allow列表中，也会被拒绝。如果allow没有配置或者为空，则允许所有访问
-        # 配置的格式 -> <IP> 或者 <IP>/<SUB_NET_MASK_size>；例如 128.242.127.1/24 24表示，前面24位是子网掩码，比对的时候，前面24位相同就匹配
-        # 不支持IPv6
-        # allow:
-        # deny:
-
     thirdary:
       # 数据源名称
       name: thirdary
@@ -206,11 +128,11 @@ spring:
       # 连接数据库的url，不同数据库不一样。例如：
       #mysql : jdbc:mysql://10.20.153.104:3306/druid2
       #oracle : jdbc:oracle:thin:@10.20.149.85:1521:ocnauto
-      url: jdbc:mysql://127.0.0.1:3306/test3?characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false
+      url: jdbc:mysql://127.0.0.1:3306/test3
       # 连接数据库的用户名
       username: root
       # 连接数据库的密码，如果你不希望密码直接写在配置文件中，可以使用ConfigFilter。详细参见https://github.com/alibaba/druid/wiki/%E4%BD%BF%E7%94%A8ConfigFilter
-      password: chenjun
+      password: 123456
       # 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
       initial-size: 1
       # 最大连接池数量
@@ -258,6 +180,7 @@ spring:
       # 防御sql注入的filter:wall
       filters: stat,wall,slf4j
 
+    druid:
       # WebStatFilter配置，说明请参考Druid Wiki，配置_配置WebStatFilter
       web-stat-filter:
         # 是否启用StatFilter默认值false
@@ -288,11 +211,11 @@ spring:
         reset-enable: false
         # 用户名
         login-username: ztemds
-          # 密码
-          login-password: ztemds@1203
-          # StatViewSerlvet展示出来的监控信息比较敏感，是系统运行的内部情况，如果你需要做访问控制，可以配置allow和deny这两个参数
-          # deny优先于allow，如果在deny列表中，就算在allow列表中，也会被拒绝。如果allow没有配置或者为空，则允许所有访问
-          # 配置的格式 -> <IP> 或者 <IP>/<SUB_NET_MASK_size>；例如 128.242.127.1/24 24表示，前面24位是子网掩码，比对的时候，前面24位相同就匹配
-          # 不支持IPv6
-          # allow:
-          # deny:
+        # 密码
+        login-password: ztemds@1203
+        # StatViewSerlvet展示出来的监控信息比较敏感，是系统运行的内部情况，如果你需要做访问控制，可以配置allow和deny这两个参数
+        # deny优先于allow，如果在deny列表中，就算在allow列表中，也会被拒绝。如果allow没有配置或者为空，则允许所有访问
+        # 配置的格式 -> <IP> 或者 <IP>/<SUB_NET_MASK_size>；例如 128.242.127.1/24 24表示，前面24位是子网掩码，比对的时候，前面24位相同就匹配
+        # 不支持IPv6
+        # allow:
+        # deny:

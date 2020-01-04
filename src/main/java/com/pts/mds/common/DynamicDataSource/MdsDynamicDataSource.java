@@ -13,11 +13,11 @@ public class MdsDynamicDataSource extends AbstractRoutingDataSource {
 
     @Override
     protected Object determineCurrentLookupKey() {
-        String dataSource = MdsDataSourceContextHolder.getDataSource();
+        MdsDataSourceNames dataSource = MdsDataSourceContextHolder.getDataSource();
         if (dataSource == null) {
             logger.info("当前数据源为[primary]");
         } else {
-            logger.info("当前数据源为{}", dataSource);
+            logger.info("当前数据源为{}", dataSource.name());
         }
         return dataSource;
     }

@@ -131,33 +131,6 @@
         </filter>
     </appender>
 
-    <!-- 为logstash输出的Appender -->
-    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashUdpSocketAppender">
-        <destination>192.168.0.1:9021</destination>
-        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder"/>
-    </appender>
-    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashUdpSocketAppender">
-        <!--配置logStash 服务地址-->
-        <destination>192.168.92.50:4560</destination>
-        <!-- 日志输出编码 -->
-        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
-            <providers>
-                <pattern>
-                    <pattern>
-                        {
-                        "logLevel": "%level",
-                        "serviceName": "${springAppName:-}",
-                        "pid": "${PID:-}",
-                        "thread": "%thread",
-                        "class": "%logger{40}",
-                        "rest": "%message"
-                        }
-                    </pattern>
-                </pattern>
-            </providers>
-        </encoder>
-    </appender>
-
     <springProfile name="dev">
         <root level="info">
             <appender-ref ref="CONSOLE" />
@@ -165,12 +138,6 @@
             <appender-ref ref="INFO_FILE" />
             <appender-ref ref="WARN_FILE" />
             <appender-ref ref="ERROR_FILE" />
-        </root>
-    </springProfile>
-
-    <springProfile name="prod">
-        <root level="info">
-            <appender-ref ref="LOGSTASH" />
         </root>
     </springProfile>
 

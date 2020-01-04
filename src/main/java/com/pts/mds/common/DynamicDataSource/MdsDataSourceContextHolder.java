@@ -10,14 +10,14 @@ public class MdsDataSourceContextHolder {
 
     private static final Logger logger = LoggerFactory.getLogger(MdsDataSourceContextHolder.class);
 
-    private static final ThreadLocal<String> contextHolder = new ThreadLocal<>();
+    private static final ThreadLocal<MdsDataSourceNames> contextHolder = new ThreadLocal<>();
 
-    public static void setDataSource(String dbType){
-        logger.info("切换到[{}]数据源",dbType);
+    public static void setDataSource(MdsDataSourceNames dbType){
+        logger.info("切换到[{}]数据源",dbType.name());
         contextHolder.set(dbType);
     }
 
-    public static String getDataSource(){
+    public static MdsDataSourceNames getDataSource(){
         return contextHolder.get();
     }
 

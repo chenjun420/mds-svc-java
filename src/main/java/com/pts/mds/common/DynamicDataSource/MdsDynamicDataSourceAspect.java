@@ -17,31 +17,16 @@ import java.lang.reflect.Method;
  */
 @Component
 @Aspect
-@Order(1) //这是关键，要让该切面调用先于AbstractRoutingDataSource的determineCurrentLookupKey()
+@Order(-1) //这是关键，要让该切面调用先于AbstractRoutingDataSource的determineCurrentLookupKey()
 public class MdsDynamicDataSourceAspect {
 
-    private Logger logger = LoggerFactory.getLogger(getClass());
-
-    @Before("@annotation(MdsDataSource)")
-    public void before(JoinPoint point) {
-        try {
-            MdsDataSource annotationOfClass = point.getTarget().getClass().getAnnotation(MdsDataSource.class);
-            String methodName = point.getSignature().getName();
-            Class[] parameterTypes = ((MethodSignature) point.getSignature()).getParameterTypes();
-            Method method = point.getTarget().getClass().getMethod(methodName, parameterTypes);
-            MdsDataSource methodAnnotation = method.getAnnotation(MdsDataSource.class);
-            methodAnnotation = methodAnnotation == null ? annotationOfClass : methodAnnotation;
-            MdsDataSourceNames dataSourceName = methodAnnotation != null
-                    && methodAnnotation.value() != null ? methodAnnotation.value() : MdsDataSourceNames.PRIMARY;
-
-            MdsDataSourceContextHolder.setDataSource(dataSourceName.name());
-        } catch (NoSuchMethodException e) {
-            logger.error("未知异常 {方法：" + point.getSignature() + "， 参数：" + point.getArgs() + ",异常：" + e.getMessage() + "}", e);
-        }
+    @Before("@annotation(ds)")
+    public void changeDataSource(JoinPoint point, MdsDataSource ds) {
+        MdsDataSourceContextHolder.setDataSource(ds.value());
     }
 
-    @After("@annotation(MdsDataSource)")
-    public void after(JoinPoint point) {
+    @After("@annotation(ds)")
+    public void clearDataSource(JoinPoint point, MdsDataSource ds) {
         MdsDataSourceContextHolder.clearDataSource();
     }
 
