@@ -1,0 +1,55 @@
+# mds Common Config
+
+################################ spring config ###############################
+spring:
+  application:
+    name: demo
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  aop:
+    auto: true
+    proxy-target-class: true
+
+  devtools:
+    restart:
+      enabled: true
+
+############################# tomcat #############################
+server:
+  port: 8888
+  servlet:
+    context-path: /
+  compression:
+    enabled: true
+    mime-types: text/html,text/xml,text/plain,text/css,text/javascript,application/javascript,application/json
+    #min-response-size: 1024
+  tomcat:
+    max-threads: 1000
+    min-spare-threads: 30
+    uri-encoding: UTF-8
+  http2:
+    enabled: true
+
+################################ spring doc config ###############################
+springdoc:
+  version: '@springdoc.version@'
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    displayRequestDuration: true
+    tagsSorter: alpha
+
+#配置Mybatis
+mybatis:
+  type-aliases-package: com.pts.mds.model
+  mapper-locations: classpath:mapper/**/*.xml
+  configuration:
+    # 开启驼峰命名转换，如：Table(create_time) -> Entity(createTime)。不需要我们关心怎么进行字段匹配，mybatis会自动识别`大写字母与下划线`
+    map-underscore-to-camel-case: true
+    # Mybatis SQL语句控制台打印
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
