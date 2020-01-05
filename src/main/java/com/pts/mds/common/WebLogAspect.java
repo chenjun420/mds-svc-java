@@ -20,7 +20,7 @@ public class WebLogAspect {
     /**
      * 日志对象
      */
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    private static final Logger logger = LoggerFactory.getLogger(WebLogAspect.class);
 
     /**
      * 进入方法时间戳
@@ -66,9 +66,10 @@ public class WebLogAspect {
     }
 
     /**
-     * @Author: gmy
-     * @Description: 处理接口调用异常
-     * @Date: 15:13 2018/10/25
+     * 处理接口调用异常
+     * @param pjp
+     * @param e
+     * @return
      */
     private ApiResponse handlerException(ProceedingJoinPoint pjp, Throwable e) {
         logger.error("未知异常 {方法：" + pjp.getSignature() + "， 参数：" + pjp.getArgs() + ",异常：" + e.getMessage() + "}", e);

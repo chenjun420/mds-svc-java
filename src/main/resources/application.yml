@@ -54,3 +54,20 @@ mybatis:
     map-underscore-to-camel-case: true
     # Mybatis SQL语句控制台打印
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#Actuator端点控制
+management:
+  server:
+    #端口配置， -1禁止http端口
+    # port: 8888
+    #服务IP绑定，多网口适用
+    # address: 127.0.0.1
+  endpoints:
+    web:
+      base-path: /manage
+      exposure:
+        include: '*'
+  info:
+    #git源代码库状态信息
+    git:
+      mode: full

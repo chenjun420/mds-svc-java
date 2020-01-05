@@ -13,7 +13,7 @@
     </resultMap>
 
     <select id="selectAll" resultMap="userMap">
-        SELECT id,name,password,phone FROM test1.User
+        SELECT id,name,password,phone FROM User
     </select>
 
 </mapper>
