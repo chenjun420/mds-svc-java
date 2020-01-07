@@ -20,13 +20,13 @@ public class MdsDynamicDataSourceMethodInterceptor implements MethodInterceptor 
     /**
      * 缓存方法注解值
      */
-    private static final Map<Method, MdsDataSourceNames> METHOD_CACHE = new HashMap<>();
+    private static final Map<Method, MdsDataSourceNames> methodMdsDataSourceNamesHashMap = new HashMap<>();
 
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
         try {
             MdsDataSourceNames dataSourceName = determineDatasource(invocation);
-            logger.info("设置数据源: > {}", dataSourceName.name());
+            logger.info("设置数据源: > [{}]", dataSourceName.name());
             MdsDataSourceContextHolder.setDataSource(dataSourceName);
             return invocation.proceed();
         } finally {
@@ -36,12 +36,12 @@ public class MdsDynamicDataSourceMethodInterceptor implements MethodInterceptor 
 
     private MdsDataSourceNames determineDatasource(MethodInvocation invocation) {
         Method method = invocation.getMethod();
-        if (METHOD_CACHE.containsKey(method)) {
-            return METHOD_CACHE.get(method);
+        if (methodMdsDataSourceNamesHashMap.containsKey(method)) {
+            return methodMdsDataSourceNamesHashMap.get(method);
         } else {
             MdsDataSource ds = method.isAnnotationPresent(MdsDataSource.class) ? method.getAnnotation(MdsDataSource.class)
                     : AnnotationUtils.findAnnotation(method.getDeclaringClass(), MdsDataSource.class);
-            METHOD_CACHE.put(method, ds.value());
+            methodMdsDataSourceNamesHashMap.put(method, ds.value());
             return ds.value();
         }
     }

@@ -12,18 +12,13 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@SpringBootApplication()
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @OpenAPIDefinition(info = @Info(title = "Template API for MDS"
 		, version = "v1"
 		, description = "Template API discription for MDS"
 		, license = @License(name = "Apache 2.0", url = "http://www.apache.org/licenses/LICENSE-2.0.html")
 		, contact = @Contact(url = "https://github.com/chenjun420/", name = "Harry.Chan", email = "chenpi_cn@hotmail.com")))
 public class MdsApplication {
-
-	@Bean
-	public MdsDynamicDataSourceAdvisor dynamicDatasourceAnnotationAdvisor() {
-		return new MdsDynamicDataSourceAdvisor(new MdsDynamicDataSourceMethodInterceptor());
-	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(MdsApplication.class, args);

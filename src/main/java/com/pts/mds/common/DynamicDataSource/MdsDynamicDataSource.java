@@ -18,7 +18,7 @@ public class MdsDynamicDataSource extends AbstractRoutingDataSource {
         if (dataSource == null) {
             logger.info("当前数据源为[primary]");
         } else {
-            logger.info("当前数据源为{}", dataSource.name());
+            logger.info("当前数据源为[{}]", dataSource.name());
         }
         return dataSource;
     }
