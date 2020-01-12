@@ -16,7 +16,9 @@ spring:
       # 连接数据库的用户名
       username: root
       # 连接数据库的密码，如果你不希望密码直接写在配置文件中，可以使用ConfigFilter。详细参见https://github.com/alibaba/druid/wiki/%E4%BD%BF%E7%94%A8ConfigFilter
-      password: 123456
+      password: LsJh/PyKfDcPClMovaBcyE+5inII08RCGdDb0pRyyWVg8Wsc+n4KJYFwXfFn5BN8HwwVRCpsH3DGOL+gphXFaQ==
+      # 启用密码加密，key为加密公钥，password为加密后密文
+      connectionProperties: config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAJpXDHaP2myqKNvoE3TTNJeHSKLpSnzfEKONe/wDS1ftUn5c4drsfboCQTS8esXe8MDMaQmfUxx0TXdxVkIaaw8CAwEAAQ==
       # 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
       initial-size: 1
       # 最大连接池数量
@@ -62,7 +64,7 @@ spring:
       # 监控统计用的filter:stat
       # 日志用的filter:slf4j
       # 防御sql注入的filter:wall
-      filters: stat,wall,slf4j
+      filters: stat,wall,slf4j,config
 
     secondary:
       # 数据源名称
@@ -76,7 +78,9 @@ spring:
       # 连接数据库的用户名
       username: root
       # 连接数据库的密码，如果你不希望密码直接写在配置文件中，可以使用ConfigFilter。详细参见https://github.com/alibaba/druid/wiki/%E4%BD%BF%E7%94%A8ConfigFilter
-      password: 123456
+      password: GytR5Jo21DrWbf9Tv9/hp0ECPBwtApo/M2+XhvqDJ46sEwpn1Vls5arr/75s2hJtIrLY8DZJ5oLu60mzcDrIGQ==
+      # 启用密码加密，key为加密公钥，password为加密后密文
+      connectionProperties: config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALyahexA+lDGoBtEQOv9aj8EGq2jARQJZ+OLmp2ffHAsDmFuoWtbn7fEixEwvIsWTtOYpNES9IQkjSgPYBPUIAkCAwEAAQ==
       # 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
       initial-size: 1
       # 最大连接池数量
@@ -122,7 +126,7 @@ spring:
       # 监控统计用的filter:stat
       # 日志用的filter:slf4j
       # 防御sql注入的filter:wall
-      filters: stat,wall,slf4j
+      filters: stat,wall,slf4j,config
 
     thirdary:
       # 数据源名称
@@ -136,7 +140,9 @@ spring:
       # 连接数据库的用户名
       username: root
       # 连接数据库的密码，如果你不希望密码直接写在配置文件中，可以使用ConfigFilter。详细参见https://github.com/alibaba/druid/wiki/%E4%BD%BF%E7%94%A8ConfigFilter
-      password: 123456
+      password: JWqzqBt7rUgwnR5yKtNwRe/s1RwBKS7VUxQ7Hj1FOG4BcYugasiuSU+82avCV4lGGTWbKWHSJT3tjd9WVnA9sQ==
+      # 启用密码加密，key为加密公钥，password为加密后密文
+      connectionProperties: config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIeA+ArKsjcVTFj8KvwJct4RtIS6U6sK+ay9x44s8HabrsNcMCPzm+7AqjkIaP/j1VR30CzlY08MBC5OIXNsj/sCAwEAAQ==
       # 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
       initial-size: 1
       # 最大连接池数量
@@ -182,7 +188,7 @@ spring:
       # 监控统计用的filter:stat
       # 日志用的filter:slf4j
       # 防御sql注入的filter:wall
-      filters: stat,wall,slf4j
+      filters: stat,wall,slf4j,config
 
     druid:
       # WebStatFilter配置，说明请参考Druid Wiki，配置_配置WebStatFilter

@@ -72,7 +72,7 @@ public class WebLogAspect {
      * @return
      */
     private ApiResponse handlerException(ProceedingJoinPoint pjp, Throwable e) {
-        logger.error("未知异常 {方法：" + pjp.getSignature() + "， 参数：" + pjp.getArgs() + ",异常：" + e.getMessage() + "}", e);
+        logger.error("未知异常 {方法: " + pjp.getSignature() + ", 参数: " + pjp.getArgs() + ", 异常: " + e.getMessage() + "}", e);
         ApiResponse apiResponse = new ApiResponse<String>(false, -1, e.getMessage(), "");
 
         return apiResponse;
@@ -95,12 +95,12 @@ public class WebLogAspect {
 
         //打印请求的内容
         startTime = System.currentTimeMillis();
-        logger.info("请求开始时间：{}" + LocalDateTime.now());
-        logger.info("请求Url : {}" + request.getRequestURL().toString());
-        logger.info("请求方式 : {}" + request.getMethod());
-        logger.info("请求ip : {}" + request.getRemoteAddr());
-        logger.info("请求方法 : " + joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
-        logger.info("请求参数 : {}" + Arrays.toString(joinPoint.getArgs()));
+        logger.info("请求开始时间: [{}]", LocalDateTime.now());
+        logger.info("请求Url: [{}]", request.getRequestURL().toString());
+        logger.info("请求方式: [{}]", request.getMethod());
+        logger.info("请求ip: [{}]", request.getRemoteAddr());
+        logger.info("请求方法: [{}.{}]", joinPoint.getSignature().getDeclaringTypeName(), joinPoint.getSignature().getName());
+        logger.info("请求参数: [{}]", Arrays.toString(joinPoint.getArgs()));
     }
 
     /**
@@ -114,10 +114,10 @@ public class WebLogAspect {
     @AfterReturning(returning = "ret", pointcut = "webLog()")
     public void doAfterReturning(Object ret) throws Throwable {
         endTime = System.currentTimeMillis();
-        logger.info("请求结束时间：{}" + LocalDateTime.now());
-        logger.info("请求耗时：{}" + (endTime - startTime));
+        logger.info("请求结束时间: [{}]", LocalDateTime.now());
+        logger.info("请求耗时: [{}]", endTime-startTime);
         // 处理完请求，返回内容
-        logger.info("请求返回 : {}" + ret);
+        logger.info("请求返回: [{}]" + ret);
     }
 
     /**
@@ -140,12 +140,12 @@ public class WebLogAspect {
     private void checkRequestParam(ProceedingJoinPoint pjp){
         String str = String.valueOf(pjp.getArgs());
         if (!IllegalStrFilterUtil.sqlStrFilter(str)) {
-            String errorinfo = "访问接口：" + pjp.getSignature() + "，输入参数存在SQL注入风险！参数为：" + pjp.getArgs().toString();
+            String errorinfo = "访问接口: " + pjp.getSignature() + ", 输入参数存在SQL注入风险！参数为: " + pjp.getArgs().toString();
             logger.info(errorinfo);
             throw new RuntimeException(errorinfo);
         }
         if (!IllegalStrFilterUtil.isIllegalStr(str)) {
-            String errorinfo = "访问接口：" + pjp.getSignature() + ",输入参数含有非法字符!，参数为：" + pjp.getArgs().toString();
+            String errorinfo = "访问接口: " + pjp.getSignature() + ", 输入参数含有非法字符!，参数为: " + pjp.getArgs().toString();
             logger.info(errorinfo);
             throw new RuntimeException(errorinfo);
         }

@@ -1,7 +1,6 @@
 package com.pts.mds;
 
-import com.pts.mds.common.DynamicDataSource.MdsDynamicDataSourceAdvisor;
-import com.pts.mds.common.DynamicDataSource.MdsDynamicDataSourceMethodInterceptor;
+import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
 import io.swagger.v3.oas.annotations.info.Info;
@@ -9,10 +8,9 @@ import io.swagger.v3.oas.annotations.info.License;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.context.annotation.Bean;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+@NacosPropertySource(dataId = "mds", groupId = "pts", autoRefreshed = true)
 @OpenAPIDefinition(info = @Info(title = "Template API for MDS"
 		, version = "v1"
 		, description = "Template API discription for MDS"
