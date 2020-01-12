@@ -1,6 +1,7 @@
 package com.pts.mds.controller;
 
 import com.pts.mds.common.ApiResponse;
+import com.pts.mds.model.InfoWithPage;
 import com.pts.mds.model.User;
 import com.pts.mds.service.PrimaryUserService;
 import com.pts.mds.service.SecondaryUserService;
@@ -37,9 +38,9 @@ public class UserController {
         return new ApiResponse(true, 0, "Success", userList);
     }
 
-    @GetMapping("/thirdary")
-    public ApiResponse getThirdaryUsers() {
-        List<User> userList = thirdaryUserService.findUsers();
+    @GetMapping("/thirdary/{pageNum}/{pageSize}")
+    public ApiResponse getThirdaryUsers(int pageNum, int pageSize) {
+        InfoWithPage<List<User>> userList = thirdaryUserService.findUsers(pageNum, pageSize);
         return new ApiResponse(true, 0, "Success", userList);
     }
 
