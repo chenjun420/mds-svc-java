@@ -1,10 +1,7 @@
-package com.pts.mds.common.DynamicDataSource;
+package com.pts.mds.common.dynamicdatasource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 线程级数据源持有类

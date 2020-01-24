@@ -1,4 +1,4 @@
-package com.pts.mds.common.DynamicDataSource;
+package com.pts.mds.common.dynamicdatasource;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;

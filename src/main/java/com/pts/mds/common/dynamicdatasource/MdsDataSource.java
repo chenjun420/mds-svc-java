@@ -1,4 +1,4 @@
-package com.pts.mds.common.DynamicDataSource;
+package com.pts.mds.common.dynamicdatasource;
 
 import java.lang.annotation.*;
 

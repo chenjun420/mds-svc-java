@@ -1,4 +1,4 @@
-package com.pts.mds.common.DynamicDataSource;
+package com.pts.mds.common.dynamicdatasource;
 
 public enum MdsDataSourceNames {
     PRIMARY,

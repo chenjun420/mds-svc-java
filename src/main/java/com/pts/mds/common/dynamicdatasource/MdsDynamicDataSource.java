@@ -1,4 +1,4 @@
-package com.pts.mds.common.DynamicDataSource;
+package com.pts.mds.common.dynamicdatasource;
 
 import com.pts.mds.common.WebLogAspect;
 import org.slf4j.Logger;
