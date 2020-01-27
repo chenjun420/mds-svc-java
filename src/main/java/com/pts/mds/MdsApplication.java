@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-@NacosPropertySource(dataId = "mds", groupId = "pts", autoRefreshed = true)
 @OpenAPIDefinition(info = @Info(title = "Template API for MDS"
 		, version = "v1"
 		, description = "Template API discription for MDS"

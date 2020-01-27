@@ -1,0 +1,49 @@
+# Spring环境配置
+spring:
+  profiles:
+    active: dev
+
+  application:
+    name: demo
+
+# 生产环境使用nacos配置中心
+nacos:
+  config:
+    bootstrap:
+      # 启用配置中心
+      enable: true
+      # 启用日志配置预先加载
+      log:
+        enable: false
+
+    # 主配置服务器地址
+    server-addr: localhost:8848
+    # 命名空间 namespace
+    namespace: 4ea8e7a2-7e17-4e43-97d9-ea987fd52cfa
+    # 主配置 data-id
+    data-id: common
+    # 主配置 group-id
+    group: global
+    # 主配置 配置文件类型
+    type: yaml
+    # 主配置 最大重试次数
+    max-retry: 10
+    # 主配置 开启自动刷新
+    auto-refresh: true
+    # 主配置 重试时间
+    config-retry-time: 2333
+    # 主配置 配置监听长轮询超时时间
+    config-long-poll-timeout: 46000
+    # 主配置 开启注册监听器预加载配置服务（除非特殊业务需求，否则不推荐打开该参数）
+    enable-remote-sync-config: true
+
+    # 数据源配置加载
+    ext-config[0]:
+      data-ids: datasources, logback
+      group: ${spring.profiles.active}
+      max-retry: 10
+      type: yaml
+      auto-refresh: true
+      config-retry-time: 2333
+      config-long-poll-timeout: 46000
+      enable-remote-sync-config: true

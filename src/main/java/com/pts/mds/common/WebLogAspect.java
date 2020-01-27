@@ -72,7 +72,7 @@ public class WebLogAspect {
      * @return
      */
     private ApiResponse handlerException(ProceedingJoinPoint pjp, Throwable e) {
-        logger.error("未知异常 {方法: " + pjp.getSignature() + ", 参数: " + pjp.getArgs() + ", 异常: " + e.getMessage() + "}", e);
+        logger.error("未知异常 {方法: [" + pjp.getSignature() + "], 参数: [" + pjp.getArgs() + "], 异常: [" + e.getMessage() + "]}", e);
         ApiResponse apiResponse = new ApiResponse<String>(false, -1, e.getMessage(), "");
 
         return apiResponse;
@@ -117,7 +117,7 @@ public class WebLogAspect {
         logger.info("请求结束时间: [{}]", LocalDateTime.now());
         logger.info("请求耗时: [{}]", endTime-startTime);
         // 处理完请求，返回内容
-        logger.info("请求返回: [{}]" + ret);
+        logger.info("请求返回: [{}]", ret);
     }
 
     /**
@@ -130,8 +130,8 @@ public class WebLogAspect {
     @AfterThrowing(value = "webLog()", throwing = "throwable")
     public void doAfterThrowing(Throwable throwable) {
         // 保存异常日志记录
-        logger.error("发生异常时间：{}" + LocalDateTime.now());
-        logger.error("抛出异常：{}" + throwable.getMessage());
+        logger.error("发生异常时间：[{}]", LocalDateTime.now());
+        logger.error("抛出异常：[{}]", throwable.getMessage());
     }
 
     /**
@@ -140,12 +140,12 @@ public class WebLogAspect {
     private void checkRequestParam(ProceedingJoinPoint pjp){
         String str = String.valueOf(pjp.getArgs());
         if (!IllegalStrFilterUtil.sqlStrFilter(str)) {
-            String errorinfo = "访问接口: " + pjp.getSignature() + ", 输入参数存在SQL注入风险！参数为: " + pjp.getArgs().toString();
+            String errorinfo = "访问接口: [" + pjp.getSignature() + "], 输入参数存在SQL注入风险！参数为: [" + pjp.getArgs().toString() + "]";
             logger.info(errorinfo);
             throw new RuntimeException(errorinfo);
         }
         if (!IllegalStrFilterUtil.isIllegalStr(str)) {
-            String errorinfo = "访问接口: " + pjp.getSignature() + ", 输入参数含有非法字符!，参数为: " + pjp.getArgs().toString();
+            String errorinfo = "访问接口: [" + pjp.getSignature() + "], 输入参数含有非法字符!，参数为: [" + pjp.getArgs().toString() + "]";
             logger.info(errorinfo);
             throw new RuntimeException(errorinfo);
         }
